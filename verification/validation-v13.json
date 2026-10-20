@@ -1,0 +1,30 @@
+{
+  "tests": {
+    "test_menu_layout": "PASS",
+    "test_khtn": "PASS",
+    "test_frame": "PASS",
+    "test_selected": "PASS",
+    "test_map": "PASS",
+    "test_logic": "PASS",
+    "test_imgui_bridge": "PASS"
+  },
+  "arm64_ios_build": "PASS",
+  "signature_verified_pages": 205,
+  "framework_load_paths": {
+    "Payload/kgvn.app/Frameworks/SMLnobita.framework/SMLnobita": [
+      "@rpath/SMLnobita.framework/SMLnobita"
+    ],
+    "Payload/kgvn.app/kgvn": [
+      "@executable_path/Frameworks/SMLnobita.framework/SMLnobita"
+    ],
+    "Payload/kgvn.app/Frameworks/UnityFramework.framework/UnityFramework": [
+      "@executable_path/Frameworks/SMLnobita.framework/SMLnobita"
+    ]
+  },
+  "anhnew_assets_match": true,
+  "runtime_source_unchanged_from_v12": true,
+  "v12_unchanged": true,
+  "pathfix_unchanged": true,
+  "device_tested": false,
+  "ipa_sha256": "5cf5d6b1211ba2e82595a308ef7c20d77316f90d7a92b9f41482ea9921060e92"
+}
