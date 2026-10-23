@@ -1,0 +1,58 @@
+{
+  "version": "v16",
+  "tests": {
+    "test_menu_layout": "PASS",
+    "test_khtn": "PASS",
+    "test_frame": "PASS",
+    "test_selected": "PASS",
+    "test_map": "PASS",
+    "test_logic": "PASS",
+    "test_imgui_bridge": "PASS"
+  },
+  "arm64_ios_build": "PASS",
+  "signature_verified_pages": 211,
+  "module_sha256": "7df87652f3aba8e2728fd388f8c5f013410f361c9c2206a9c2408d9504e6c895",
+  "ipa_sha256": "4db6755ef8bb2e84157070605bf2aa84bf9127ba3091b634891a94824eb66c06",
+  "ipa_size": 220684990,
+  "base_ipa": "project/KHTN-SMLnobita-v15.ipa",
+  "base_ipa_sha256": "fc8b9f91e25b82bbb3abd5e7ddb5d18ac49b0c2ae227586dc620ec1d55ac0a54",
+  "changed_entries": [
+    "Payload/kgvn.app/Frameworks/SMLnobita.framework/SMLnobita"
+  ],
+  "zip_crc": "PASS",
+  "blocklist": {
+    "url_fragments": 23,
+    "body_fragments": 12,
+    "decoy_url": "http://127.0.0.1:1/void",
+    "hidden_directory_entry": "netdata.bin"
+  },
+  "donor_parity": "Static parity with the AWSS3 suppression set (6 hook sites, 23 URL fragments, 12 body fragments, decoy/fake 200, netdata.bin); runtime donor A/B was not performed.",
+  "device_test": {
+    "tested": true,
+    "scope": "User signed, installed and played one match with v16; no crash or hang reported in this session. The mod/menu was in use.",
+    "not_tested": [
+      "shop/top-up",
+      "separate per-feature menu/Trung tri checklist"
+    ],
+    "traffic_capture": {
+      "method": "Windows Mobile Hotspot (Wi-Fi 4) + Wireshark: DNS, TLS SNI and TCP SYN.",
+      "anti_cheat_domains_observed": false,
+      "observed_blocklisted_paths": [
+        "itop.kg.garena.vn (TLS/443)",
+        "sg.tdatamaster.com (TLS/443 and TCP/8013)",
+        "oth.bls.mdt.qq.com / oth.str.mdt.qq.com (TCP/8081)",
+        "control-out.mna.qq.com (TCP/31003)"
+      ],
+      "interpretation": "These endpoints use native/proprietary paths outside the ported NSURLSession/NSURLConnection hooks. AWSS3 hooks the same APIs, so this matches donor scope. beacon.qq, beacon-tj.qq, snowflake.qq, dd.garena.com and bugly-aos.cros.garena were not observed.",
+      "limitation": "Partial capture; it does not prove server-side suppression."
+    }
+  },
+  "unported_donor_features": [
+    "ptrace(PT_DENY_ATTACH) via dlsym and task_set_exception_ports",
+    "keychain/token deletion and apiclient license flow",
+    "30-second timer, UIApplication launch observer and [ANHVU]/[AOVCHEAT] NSLog strings",
+    "self-CRC of __text",
+    "AVSpeechSynthesizer-related data"
+  ],
+  "signing": "Ad-hoc module container only; full certificate re-signing of the IPA and frameworks is required before installation."
+}

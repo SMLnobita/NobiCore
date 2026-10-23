@@ -1,0 +1,55 @@
+{
+  "version": "v16",
+  "date": "2026-10-23",
+  "baseline_commit": "81a4fb168ab92e6d898f53a7c3c1c377cc44e53e",
+  "scope": "Local rebuild and host tests of the NobiCore working tree; not release signing, device verification or server verification.",
+  "build": {
+    "result": "PASS",
+    "target": "aarch64-ios.13.0",
+    "toolchain": "Zig 0.13.0 + iPhoneOS16.5 SDK",
+    "module": "project/build/Clone6-khtn",
+    "module_sha256": "2cab2c21ff3dbe886c707fd4f3bf176b8d3e82fb0c5240bab6934ce96cfecbc3",
+    "module_size": 877376,
+    "signature_pages": 211,
+    "ad_hoc_container": true,
+    "cms_distribution_signature": false,
+    "dylib_id": "@rpath/SMLnobita.framework/SMLnobita"
+  },
+  "tests": {
+    "test_menu_layout": "PASS",
+    "test_khtn": "PASS",
+    "test_frame": "PASS",
+    "test_selected": "PASS",
+    "test_map": "PASS",
+    "test_logic": "PASS",
+    "test_imgui_bridge": "PASS"
+  },
+  "source_sha256": {
+    "project/src/TssGuard.mm": "5bfbddcde276502eeec79c7bd94d59fc989f02bf52b2f9ef382a3130da066718",
+    "project/build-khtn.ps1": "fd8bfd864a18e1e592c6fd9337a98b410269c1f00ce141a776fff276f6a93675",
+    "project/build/package_menu_v16.py": "49455dee8c89105c784cfa435fc763d5b307c06287fc69a41aeb26bd2c8fcbd7",
+    "project/menu/ImGuiDrawView.mm": "81d619fc2efd82508b457effedbffb5556a02b4751d3b25b2e546a3fe0cdcffa"
+  },
+  "release_comparison": {
+    "release_module_sha256": "7df87652f3aba8e2728fd388f8c5f013410f361c9c2206a9c2408d9504e6c895",
+    "release_module_size": 877504,
+    "byte_identical": false,
+    "reason": "The release module was linked from a different build root. Embedded object/source paths differ; LC_UUID and __LINKEDIT symbol/string tables also differ, so the whole-container hash changes.",
+    "initialized_sections_identical_after_path_normalization": true,
+    "matched_sections_note": "All initialized __TEXT, __DATA_CONST and __DATA sections matched after replacing the release project root with the NobiCore root; __bss is a zero-fill section (offset 0, flags 0x1) and is not file-backed.",
+    "text_section_sha256": "add63f1a407f522759561b84f60d9307231c6d59726b39c062f4d031aa84cd77",
+    "differences": [
+      "LC_UUID",
+      "__LINKEDIT symbol/string tables (release 56234 bytes, rebuild 56098 bytes)",
+      "__bss zero-fill section (not file-backed)"
+    ]
+  },
+  "not_verified": [
+    "certificate signing / installable signed IPA",
+    "device installation from this repository",
+    "server-side anti-cheat suppression",
+    "shop/top-up paths",
+    "donor A/B comparison"
+  ],
+  "notes": "Build and tests were run in the NobiCore working tree with junctions to the existing Zig/SDK toolchain. This does not prove a clean-machine build, certificate signing, device behavior or server behavior."
+}

@@ -58,3 +58,11 @@ Các tài liệu và script phân tích lịch sử có thể còn đường d�
 - `anhnew` gồm AppIcon60x60@2x.png, AppIcon76x76@2x~ipad.png và Assets.car; đã đưa nguyên byte vào app trong v13.
 - `analysis/kraydus` giữ bằng chứng giải nén bảng quái/tên, mapping 765 record và script tái kiểm tra ID. Các ID mới đã áp dụng từ v12, runtime v13 giữ nguyên.
 - `management/validation-v13/validation.json` và `project/build/KHTN-SMLnobita-v13.report.json` giữ kết quả kiểm tra/gói; nhật ký đầy đủ ở `10_20_2026v2.md`.
+
+## Bổ sung ngày 23/10/2026 — TssGuard và đóng gói v16
+
+- `project/src/TssGuard.mm` là constructor ObjC++ chạy sớm: stub các lớp Tss/Ano, cài 6 hook `NSURLSession`/`NSURLConnection`/`NSFileManager`, lọc URL/body và trả fake HTTP 200 cho request bị chặn.
+- `project/build-khtn.ps1` thêm `src\TssGuard.mm` vào danh sách source; đây là thay đổi build duy nhất ngoài source mới.
+- `project/build/package_menu_v16.py` lấy nền `KHTN-SMLnobita-v15.ipa`, kiểm tra SHA256, thay module và chỉ entry SMLnobita; không đụng asset/menu.
+- `verification/package-v16.json` và `verification/validation-v16.json` là báo cáo đóng gói/xác minh release v16. `SOURCE-SHA256.json` được cập nhật sau khi thêm các file trên.
+- `build-khtn-macos.sh`/`Makefile` vẫn là tài liệu lịch sử, chưa có TssGuard; chỉ pipeline PowerShell/Zig được xác minh.

@@ -46,3 +46,9 @@ v13 bổ sung nhãn tự xuống dòng khi thu nhỏ menu, kẹp toàn bộ cử
 Đã có kiểm tra host cho logic, bridge, luồng frame/map và routing menu; đã dựng preview bằng đúng ImGui/font/theme. Đã kiểm tra ZIP, các đường nạp framework và hash các CodeDirectory của gói cuối. Người dùng đã xác nhận bản pathfix ổn.
 
 Độ tương đương đầy đủ của tiến trình skin Evo với bản 6bohuel chưa được chứng minh. Mock/test host không tự chứng minh server đã thực thi mỗi lần Auto Bộc phá/Trừng trị. Tên tướng là thay đổi HUD cục bộ. Không ghi nhận một cơ chế anti-ban đã được xác minh.
+
+## Bổ sung ngày 23/10/2026 — v16 có anti-ban
+
+Từ v16, module có thêm `src/TssGuard.mm` để chặn báo cáo anti-cheat: stub 7 lớp Tss/Ano, 23 fragment URL, 12 fragment body, 6 hook site, decoy `http://127.0.0.1:1/void`, fake HTTP 200 và ẩn `netdata.bin`. Đây là thay đổi runtime ẩn, không thêm control/menu; menu và Trừng trị giữ nguyên v13.
+
+Đính chính mục "Mức xác minh" phía trên: câu "Không ghi nhận một cơ chế anti-ban đã được xác minh" chỉ đúng cho tới v13. Từ v16 đã có cơ chế anti-ban theo phạm vi donor, với bằng chứng build/test host và một ván chơi thử; chưa xác minh phía server, chưa test shop/nạp, chưa chạy donor A/B. Chi tiết: `docs/V16-ANTIBAN.md`.

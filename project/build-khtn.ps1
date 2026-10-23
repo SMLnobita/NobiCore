@@ -12,7 +12,7 @@ $common=@('-target','aarch64-ios.13.0','-isysroot',$iosSdk,'-isystem',"$iosSdk\u
 $cxx=@('-include',"$cloneRoot\build\ios-cxx-compat.h",'-std=c++11','-nostdinc++','-isystem',"$iosSdk\usr\include\c++\v1")
 & $zigExe cc @common -DCLONE6_IMGUI -Wall -Wextra -Werror -fno-builtin -c (Join-Path $cloneRoot 'src\Clone6.c') -o "$objects\runtime.o"
 if($LASTEXITCODE -ne 0){throw 'Runtime compilation failed'}
-$sources=@('menu\ImGuiDrawView.mm','menu\IMGUI\imgui.cpp','menu\IMGUI\imgui_draw.cpp','menu\IMGUI\imgui_widgets.cpp','menu\IMGUI\imgui_tables.cpp','menu\IMGUI\imgui_impl_metal.mm')
+$sources=@('src\TssGuard.mm','menu\ImGuiDrawView.mm','menu\IMGUI\imgui.cpp','menu\IMGUI\imgui_draw.cpp','menu\IMGUI\imgui_widgets.cpp','menu\IMGUI\imgui_tables.cpp','menu\IMGUI\imgui_impl_metal.mm')
 foreach($relative in $sources){
  $name=[IO.Path]::GetFileNameWithoutExtension($relative)
  $arc=@();if($relative.EndsWith('.mm')){$arc=@('-fobjc-arc','-fblocks')}

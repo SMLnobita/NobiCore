@@ -83,3 +83,15 @@ Giữ nguyên bản pathfix và các IPA v11/v12. Bộ phát hành có source sn
 IPA v13 dùng hiện tại nằm ở `release/KHTN-SMLnobita-v13.ipa`. Script package_menu_v13.py vẫn xuất lại project/KHTN-SMLnobita-v13.ipa khi chạy; báo cáo đóng gói giữ đường dẫn nguồn lịch sử. Script promote_v13_release.py là nhật ký thao tác một lần, không cần chạy lại.
 
 Giữ bốn IPA: release v13 để sử dụng; release pathfix làm đầu vào script v11/v12 và bản dự phòng; project v12 làm nền đóng gói v13; project no-guide làm seed tái tạo pathfix. Đã kiểm tra hash bốn file trước/sau dọn, không thay đổi. Không sửa artifact/checksum/source snapshot trong release. Báo cáo: `management/cleanup-ipa-v13-report.json`.
+
+## Bổ sung ngày 23/10/2026 — pipeline v16 trong NobiCore
+
+- Source hiện hành: v16; menu/Trừng trị không đổi so với v13.
+- Build Windows/Zig: `Set-Location project`, chạy `.\build-khtn.ps1 -InstallName "@rpath/SMLnobita.framework/SMLnobita"` rồi `python build\prepare_module_khtn.py`. Script đã thêm `src\TssGuard.mm`.
+- Đóng gói: đặt `KHTN-SMLnobita-v15.ipa` (SHA256 `fc8b9f91e25b82bbb3abd5e7ddb5d18ac49b0c2ae227586dc620ec1d55ac0a54`) vào `project/`, chạy `python build\package_menu_v16.py`. Script chỉ thay entry SMLnobita, kiểm tra CRC/entry list, xuất `project/KHTN-SMLnobita-v16.ipa` và báo cáo trong `project/build/`.
+- Toolchain/SDK và IPA nền không nằm trong repository. `build-khtn-macos.sh` và `Makefile` chưa được đồng bộ TssGuard; không coi là pipeline đã kiểm tra.
+- Bảy test host và build ARM64 đã PASS trên máy gốc; xem `verification/validation-v16.json`. Chưa thử iPhone từ repository này.
+
+## Bổ sung ngày 23/10/2026 — build/test lại trong NobiCore
+
+Đã build lại source v16 trong NobiCore bằng Zig 0.13 + iPhoneOS16.5 SDK (junction tới toolchain hiện có), module ad-hoc 211 trang; bảy test host PASS. Module SHA256 `2cab2c21ff3dbe886c707fd4f3bf176b8d3e82fb0c5240bab6934ce96cfecbc3`, khác release `7df87652f3aba8e2728fd388f8c5f013410f361c9c2206a9c2408d9504e6c895` vì build root khác: sau khi chuẩn hoá đường dẫn, toàn bộ section code/data đã khởi tạo trùng nhau (gồm `__TEXT,__text`), chỉ khác `LC_UUID`, bảng symbol/string trong `__LINKEDIT` và section `__bss` zero-fill. Đây không phải bằng chứng ký, cài trên thiết bị hay xác nhận phía server. Chi tiết: `verification/nobicore-build-v16.json`.
